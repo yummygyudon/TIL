@@ -8,6 +8,6 @@
 
 ## Just Do it!
 
-- [Git]: https://github.com/yummygyudon/TIL/blob/master/GitHub/GitHub.md
+- [Git]: https://github.com/yummygyudon/TIL/blob/master/GitHub/GitHub.md	"Git"
 
   
