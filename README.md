@@ -10,5 +10,6 @@
 
 -  [Git](https://github.com/yummygyudon/TIL/blob/master/GitHub/GitHub.md)
 
-
+- Python
+  - [Explain](https://github.com/yummygyudon/TIL/blob/master/Python/Python_Exp.md)
 
