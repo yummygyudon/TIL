@@ -310,3 +310,83 @@ TUVWXYZ[\
 
 ```
 
+
+
+### 풀이
+
+```python
+#[실습 1]
+# 원하는 숫자열 만들기(1~10)
+for i in range(1,11,1) :
+    print(i, end='')
+    
+   ============================================================================ 
+#[실습 2]
+#개행된 숫자열 만들기
+for i in range(0,5,1) :
+    print(i, sep='\n')
+
+for i in range(5) :
+    print(i)
+  
+============================================================================
+#[실습 3]
+#원하는 문자 개행
+for i in range(0,5,1) :
+    print('@')
+
+for i in range(5):
+    print('*')
+
+   ============================================================================ 
+#[실습 4]
+#조건 출력(홀짝 내림차순 판정)
+for i in range(9,3,-1) :	#step = -1 로 역순 / 9~4
+    if i%2 == 1 :			
+        print(i, ' : 홀수', end = "")
+    else :
+        print(i, ' : 짝수', end = "")
+
+for i in range(9,3,-1) :
+    print(i, end="")		#데이터 먼저 출력 & 옆에 조건 결과값 붙이기
+    if i%2 == 1 :
+        print(' : 홀수')
+    else :
+        print(' : 짝수')
+ 
+============================================================================
+#[실습 5]
+#난수Tuple의 특정조건 값끼리의 계산
+import random
+start = random.randint(1, 10)
+end = random.randint(30,40)			#import는 고정
+
+for i in range(start, end+1 ,2) :				#2씩 띄워진 값
+    if start%2 == 0 :
+        sum_i = sum(range(start, end+1, 2))
+    else :
+        sum_i = sum(range(start+1, end + 1, 2))	#홀수일 경우, 기존 범위 기준 값에 1씩 더해서 구성값들을 짝수들로 수정        
+print(start, " 부터", end, " 까지의 짝수의 합 : ",sum_i)
+
+
+sum_i = 0
+for i in range(start, end+1 ,1) :
+    if i%2 == 0 :
+        sum_i = sum_i + i       #누적 연산 반복
+
+print(start, " 부터", end, " 까지의 짝수의 합 : ",sum_i)
+
+============================================================================
+#[실습 6]
+#각 특정값들의 누적합 출력
+evenNum, oddNum = 0,0
+
+for i in range(1,101) :
+    if i%2 == 0 :
+        sumEven = sum(range(0,101,2))
+    else :
+        sumOdd = sum(range(1,101,2))
+print("1부터 100까지의 숫자들 중에서 \n짝수의 합은 ", sumEven, " 이고 \n홀수의 합은 ", sumOdd, " 이다.")
+
+```
+
