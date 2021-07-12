@@ -99,6 +99,23 @@ def Func(a):
   - 주의_ 초기화하는 장소에 따라 변수의 범위가 결점됨
   - 내부에서 전역 변수 대입하여 초기화 → '새로운 지역 변수' 생성됨
 
+```python
+def func1(p1, p2, p3, p4) :
+    global a, b, d
+    a = p1
+    b = p2
+    c = p3
+    d = p4
+    print('[지역] a=', a, ' b=', b, ' c=', c, ' d=', d, sep='', end='\n\n')
+
+a = 10
+b = 20
+c = 30
+print('[전역(함수호출전)] a=', a, ' b=', b, ' c=', c, sep='', end='\n\n')
+func1('A', 'B', 'C', 'D')
+print('[전역(함수호출후)] a=', a, ' b=', b, ' c=', c, ' d=', d, sep='', end='\n\n')            #함수에선 global을 a,b,d만 선언했기때문에 c는 30 유지
+```
+
 
 
 
@@ -148,6 +165,7 @@ def Func(a):
 
 - **' * '기호**를 인수 이름 앞에
 - 인수 목록의 **마지막**에 와야함
+  - 뒤의 **'나머지'**를 모두 취급한다는 의미
 
 ```python
 def Func(name, * names) : 
@@ -161,11 +179,16 @@ Func("홍길동", "이순신", "유관순")
 
 
 ```python
-def intsum(*ints) :
+def sumall(*p) :
     sum = 0
-    for num in ints :
-        sum += num
-    return
+    for data in p :
+        sum += data
+    return sum
+
+print(sumall(1,2,3,4,5))
+15
+print(sumall(100, 200, 300))
+600
 ```
 
 ```python
@@ -193,6 +216,60 @@ print("2 ~ 5 = ", calcstep(begin = 2, end = 5, step = 1))
 print("2 ~ 5 = ", calcstep(begin = 2, end = 5, step = 1))
 ```
 
+```python
+def normalfn(p1, p2, p3) :		#기본값 지정이없음
+    print(p1)
+    print(p2)
+    print(p3)
+
+normalfn(10,20)
+# 오류 : 기본값 지정 없기때문에 인수 맞춰야함
+normalfn(p3=10,p1=20,p2=30)
+20
+30
+10
+
+def normalfn(p1, p2, p3=40) :		
+    print(p1)
+    print(p2)
+    print(p3)
+    
+normalfn(10,20)
+10
+20
+40					#기본값이 지정되었기때문에 40이 나옴
+```
+
+- 기본값이 지정되어 있으면 실인수가 없을 때, 기본값 출력
+
+```python
+def defaultfn1(p1=10, p2="abc", p3=True) :
+    print(p1)
+    print(p2)
+    print(p3)
+    
+defaultfn1()
+10
+abc
+True
+
+defaultfn1(10,20,30)
+10
+20
+30
+
+defaultfn1("abc", "xyz")
+abc
+xyz
+True
+
+defaultfn1(p2="가", p1="xyz", p3="P")
+xyz
+가
+P
+
+```
+
 
 
 ## 키워드 가변 인수
@@ -218,7 +295,7 @@ emp_func('홍길동', 35, addre='서울시', height=175, weight=65)
 #{'addre': '서울시', 'height': 175, 'weight': 65}
 ```
 
-
+- 함수 선정시의 **매개변수명** 을 **키워드**로 사용
 
 ```python
 def calcstrp(**args) :			#모든 인수들(위치는 언제든 바뀔 수 있다고 선언)
