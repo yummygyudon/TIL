@@ -272,6 +272,42 @@ P
 
 
 
+- 지정변수 활용
+
+```python
+def printdeco(*p, deco="@") : #지정 인수는 기본값
+    for data in p :
+        print(deco, data, deco)
+    print()
+
+printdeco("가", "나")
+@ 가 @
+@ 나 @
+
+printdeco(True, "A", 10, deco="$")
+$ True $
+$ A $
+$ 10 $
+```
+
+- 구조 설정 및 데이터 삽입
+
+```python
+def getlist1(times, *nums) :
+    newnums = []						#새로운 출력값 리스트 구조 설정 / len() 가능
+    for data in nums :
+        newnums.append(data * times)	#기존 값 * *nums 요소들 각각 곱해서
+    return newnums						#새로 만든 리스트형 변수에 삽입
+
+print(getlist1(2, 1,2,3,4,5))			#times =2 , *nums = 나머지 수
+[2, 4, 6, 8, 10]
+
+print(getlist1(3, 1,2,3,4,5,6,7))
+[3, 6, 9, 12, 15, 18, 21]
+```
+
+
+
 ## 키워드 가변 인수
 
 - **'* *'기호**를 인수 목록에 붙여서 가변 개수 전달
@@ -310,6 +346,27 @@ def calcstrp(**args) :			#모든 인수들(위치는 언제든 바뀔 수 있다
 
 print("2 ~ 5 = ", calcstep(begin = 2, end = 5, step = 1))
 print("2 ~ 5 = ", calcstep(step = , end = 5, begin = 1))	#순서 바꿔서 키워드 입력해도 됨
+```
+
+
+
+```python
+def calcscore(name, *score, **option):	
+    print(name)
+    sum = 0
+    for s in score:
+        sum += s
+    print("총점 :", sum)	
+    if (option['avg'] == True ):			#**option 중 'avg'키 value값 유효하면
+        print("평균 :", sum / len(score))
+
+calcscore("김상형", 88, 99, 77, avg = True)
+calcscore("김한슬", 99, 98, 95, 89, avg = False)
+김상형
+총점 : 264
+평균 : 88.0
+김한슬
+총점 : 381
 ```
 
 
@@ -354,4 +411,287 @@ lambda x, y : z= x + y
 **upper(문자/문자열) : 대문자로 바꾸기*
 
 **split(문자열,sep=) : 구분자 기준으로 문자열 내 각 단어들 나누기*
+
+
+
+
+
+## 실습
+
+```
+[ 실습 1 ]
+<구현해야 하는 함수 사양>
+   함수명 : print_book_title
+   매개변수 : 없음
+   리턴값 : 없음
+   기능 : 파이썬 교재명을 화면에 출력
+   함수명 : print_book_publisher
+   매개변수 : 없음
+   리턴값 : 없음
+   기능 : 파이썬 교재의 출판사명을 화면에 출력
+- print_book_title() 함수를 3회 호출하고 
+	print_book_publisher() 함수를 5회 호출한다.
+
+
+[ 실습 2 ]
+<구현해야 하는 함수 사양>
+   함수명 : get_book_title
+   매개변수 : 없음
+   리턴값 : 있음
+   기능 : 파이썬 교재명을 리턴한다.
+   함수명 : get_book_publisher
+   매개변수 : 없음
+   리턴값 : 있음
+   기능 : 파이썬 교재의 출판사명을 리턴한다.
+- get_book_title() 함수를 호출하고 리턴되는 결과를 name 변수에 저장한 다음
+												name 변수의 값을 2회 출력한다. 
+	get_book_publisher() 함수를  호출하고 리턴되는 결과를 화면에 출력한다.
+
+
+[ 실습 3 ]
+1. 파일명 : funcLab3.py
+2. 구현해야 하는 함수 사양
+   함수명 : expr
+   매개변수 : 숫자 2개와 연산자 1개
+   리턴값 : 연산 결과 또는  None
+   기능 : 전달된 두 개의 숫자에 대해서 전달된 연산을 처리하고 그 결과를 리턴한다.
+            연산자는 +, -, *, / 만 처리하며 그 외의 연산자는 연산을 하지 않고 None 을 리턴한다.
+3. 숫자 2개와 연산자 1개를 전달하여 expr() 이라는 함수를 호출한 다음 리턴 결과가 None 이면
+   수행 불가 를 출력하고 그렇지 않으면 연산결과 : XX 를 출력한다.
+
+
+[ 실습 4 ]
+<구현해야 하는 함수 사양>
+   함수명 : print_triangle
+   매개변수 : 1개
+   리턴값 : 없음
+   기능 : 전달된 숫자 개수로 구성되는 삼각형을 출력한다. 출력 형식은 다음과 같다.
+         2 전달시
+         *
+         * *
+         5 전달시
+         *
+         **
+         ***
+         ****
+         *****
+         전달되는 아규먼트 값은 1~10으로 제한한다. 
+         1~10 이외의 값이 전달된 경우에는 처리하지 않고 그냥 리턴한다.
+
+- 숫자를 다양하게 지정해서 print_triangle() 함수를 호출해 본다.
+
+
+[ 실습 5 ]
+<구현해야 하는 함수 사양>
+   함수명 : print_triangle
+   매개변수 : 1개
+   리턴값 : 없음
+   기능 : 전달된 숫자 개수로 구성되는 삼각형을 출력한다. 출력 형식은 다음과 같다.
+         2 전달시
+         @@
+         @ 
+         5 전달시
+         @@@@@
+         @@@@
+         @@@
+         @@
+         @
+         전달되는 아규먼트 값은 1~10으로 제한한다.
+         1~10 이외의 값이 전달된 경우에는 처리하지 않는다.
+
+- 숫자를 다양하게 지정해서 print_triangle() 함수를 호출해 본다.
+
+
+[ 실습 6 ]
+<구현해야 하는 함수 사양>
+   함수명 : print_gugudan
+   매개변수 : 1개
+   리턴값 : 없음
+   기능 : 전달된 숫자의 구구단을 출력한다.
+         - 전달된 아규먼트가 int 타입인지 채크하고 int 타입이 아니면 그냥 리턴한다.
+         - 전달된 아규먼트가 1~9 사이인지 채크하고 아니면 그냥 리턴한다.
+         - 그 외의 경우에는 해당 단의 구구단을 행 단위로 출력한다.\\
+- 숫자를 다양하게 지정해서 print_ gugudan() 함수를 호출해 본다.
+
+
+[ 실습 7 ]
+<구현해야 하는 함수 사양>
+   함수명 : differtwovalue
+
+   매개변수 :  2개
+   리턴값 : 연산 결과
+   기능 : 전달받은 2개의 데이터 중에서 큰 값에서 작은 값의 차를 리턴 두 값이 동일하면 0 을 리턴한다.
+           10, 20 이 전달되면 ---> 10 리턴
+           20, 5 가 전달되면 ---> 15 리턴
+           5, 30 이 전달되면 ---> 25 리턴
+           6, 3 이 전달되면  ---> 3 리턴
+
+- 1부터 30 사이의 난수 2 개를 추출하여 2번에서 구현된 함수를 호출하고 
+	결과를 다음 형식으로 출력한다.
+   
+   "X 와 Y 의 차는 W 입니다."
+  (----> 5 회 반복)
+```
+
+
+
+### 풀이
+
+```python
+#[실습1]
+def print_book_title() :
+    return "파이썬 정복"
+
+def print_book_publisher() :
+    return "한빛 미디어"
+
+for _ in range(3)
+	print(print_book_title())
+
+for _ in range(5)
+	print(print_book_publisher())
+    
+```
+
+```python
+#[실습2]
+def get_book_title() :
+    return "파이썬 정복"
+
+def get_book_publisher() :
+    return"힌빛미디어"
+
+name = get_book_title()
+
+for _ in range(2) :
+    print(name)
+
+print(get_book_publisher())
+```
+
+```python
+#[실습3]
+#풀이 1
+def expr(num1, num2, cal) :
+    if cal == "+" :
+        return num1 + num2
+    elif cal == "-" :
+        return num1 - num2
+    elif cal == "*" :
+        return num1 * num2
+    elif cal == "/" :
+        return num1 / num2
+    else :
+        return None
+
+#풀이 2
+def expr(num1, num2, cal) :
+    z = None
+    if cal == "+" :
+        z = num1 + num2
+    elif cal == "-" :
+        z = num1 - num2
+    elif cal == "*" :
+        z = num1 * num2
+    elif cal == "/" :
+        z = num1 / num2
+    return z
+
+#풀이 3
+def expr(num1, num2, cal) :
+    if cal == "+" :
+        z = num1 + num2
+        return z
+    elif cal == "-" :
+        z = num1 - num2
+        return z
+    elif cal == "*" :
+        z = num1 * num2
+        return z
+    elif cal == "/" :
+        z= num1 / num2
+        return z
+    else :
+        return
+
+
+expr = expr(6,2,"**")
+
+#풀이 1
+if expr == None :
+    print("수행 불가")
+else :
+    print("연산결과 : ", expr)
+
+#풀이 2
+if expr is None : 
+    print("수행 불가")
+else:
+    print("연산결과 : ", expr)
+
+```
+
+
+
+```python
+#[실습4]
+def print_triangle(a) :
+    if a > 10 :
+        return
+    for i in range(1,a+1) :
+        print("*" * i)
+        
+print_triangle(13)
+```
+
+
+
+```python
+#[실습5]
+def print_triangle(a) :
+    if a > 10 or a < 1 :
+        return
+    for i in range(a, 0, -1):
+        print("@" * i)
+
+
+print_triangle(8)
+```
+
+
+
+```python
+#[실습6]
+def print_gugudan(dan) :
+    if dan != int(dan) :        # type(dan) != int :
+        return
+    elif dan < 1 or dan >= 10 :
+        return
+    else :
+        for num in range(1,10) :
+            print(dan, "*", num, "=", dan * num)
+            
+print_gugudan(8)
+```
+
+
+
+```python
+#[실습7]
+def differtwovalue(num1, num2) :
+    if num1 == num2 :
+        return 0
+    else :
+        z = abs(num1 - num2)
+        return z
+
+import random
+
+
+for i in range(5) :
+    a = random.randint(1, 30)
+    b = random.randint(1, 30)
+    differtwovalue(a, b)
+    print(a, "와 ", b, "의 차는 ", differtwovalue(a, b), " 입니다.")
+```
 

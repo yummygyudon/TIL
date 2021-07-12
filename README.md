@@ -16,8 +16,8 @@
   - [반복문_While문](https://github.com/yummygyudon/TIL/blob/master/Python/Python_While.md)
   - [반복문_For문](https://github.com/yummygyudon/TIL/blob/master/Python/Python_For.md)
   - [Def_함수](https://github.com/yummygyudon/TIL/blob/master/Python/Python_Def.md)
-  - 컬렉션(Collection)
-    - 문자열(String)
+  - [컬렉션(Collection)](https://github.com/yummygyudon/TIL/blob/master/Python/Python_Collection.md)
+    - [문자열(String)](https://github.com/yummygyudon/TIL/blob/master/Python/Python_String.md)
     - 튜플 / 리스트(Tuple / List)
     - 딕셔너리(Dictionary)
   
