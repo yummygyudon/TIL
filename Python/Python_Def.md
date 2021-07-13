@@ -197,6 +197,22 @@ print(sumall(100, 200, 300))
 <변수명>(*a, *args)	#Error
 ```
 
+```python
+def printdeco(*p, deco="@") : #지정 인수는 기본값
+    for data in p :
+        print(deco, data, deco)
+    print()
+
+printdeco("가", "나")
+@ 가 @
+@ 나 @
+
+printdeco(True, "A", 10, deco="$")
+$ True $
+$ A $
+$ 10 $
+```
+
 
 
 ## 키워드 인수
@@ -205,16 +221,10 @@ print(sumall(100, 200, 300))
 
 - 앞쪽에 키워드 인수 ▶ 뒤쪽엔 위치 인수 불가
 
-```python
-def calcstep(begin, end, step) :
-    sum = 0
-    for num in range(begin, end + 1, step) :
-        sum += num
-    return sum
+- 정의 위치에 따라 매개변수에 전달됨
 
-print("2 ~ 5 = ", calcstep(begin = 2, end = 5, step = 1))
-print("2 ~ 5 = ", calcstep(begin = 2, end = 5, step = 1))
-```
+  - 실인수 앞에 매개변수 지정하면 위치 관계없이 전달 가능
+
 
 ```python
 def normalfn(p1, p2, p3) :		#기본값 지정이없음
@@ -222,6 +232,7 @@ def normalfn(p1, p2, p3) :		#기본값 지정이없음
     print(p2)
     print(p3)
 
+#포지션 Argument
 normalfn(10,20)
 # 오류 : 기본값 지정 없기때문에 인수 맞춰야함
 normalfn(p3=10,p1=20,p2=30)
@@ -229,12 +240,8 @@ normalfn(p3=10,p1=20,p2=30)
 30
 10
 
-def normalfn(p1, p2, p3=40) :		
-    print(p1)
-    print(p2)
-    print(p3)
-    
-normalfn(10,20)
+#키워드 Argument
+normalfn(p1=10, p3=40, p2=20)
 10
 20
 40					#기본값이 지정되었기때문에 40이 나옴
@@ -243,6 +250,7 @@ normalfn(10,20)
 - 기본값이 지정되어 있으면 실인수가 없을 때, 기본값 출력
 
 ```python
+#디폴트(default) Argument
 def defaultfn1(p1=10, p2="abc", p3=True) :
     print(p1)
     print(p2)
@@ -274,21 +282,6 @@ P
 
 - 지정변수 활용
 
-```python
-def printdeco(*p, deco="@") : #지정 인수는 기본값
-    for data in p :
-        print(deco, data, deco)
-    print()
-
-printdeco("가", "나")
-@ 가 @
-@ 나 @
-
-printdeco(True, "A", 10, deco="$")
-$ True $
-$ A $
-$ 10 $
-```
 
 - 구조 설정 및 데이터 삽입
 
@@ -531,6 +524,58 @@ lambda x, y : z= x + y
    
    "X 와 Y 의 차는 W 입니다."
   (----> 5 회 반복)
+  
+  
+[ 실습 8 ]
+<구현해야 하는 함수 사양>
+   함수명 : print_triangle_withdeco
+   매개변수 : 2개
+            숫자와 데코문자 
+            여기에서 데코문자는 기본값을 갖는다. 기본값은 ‘%’로 정한다.
+   리턴값 : 없음
+   기능 : 전달된 숫자 개수로 구성되는 삼각형을 출력한다. 출력 형식은 다음과 같다.
+         숫자 2 만 전달시
+          	 %
+         	%%
+         숫자 5 와 데코문자 ‘*’ 전달시
+             *
+            **
+           ***
+          ****
+         *****
+        전달되는 아규먼트 값은 1~10으로 제한한다. 1~10 이외의 값이 전달된 경우에는 
+        처리하지 않는다.
+        
+- 숫자를 다양하게 지정해서 print_triangle_withdeco () 함수를 호출해 본다.
+
+
+[ 실습 9 ]
+<구현해야 하는 함수 사양>
+   함수명 : sumEven1
+   매개변수 : 가변형(전달받을 수 있는 아규먼트 개수에 제한이 없다.)
+   리턴값 : 1개
+   기능 : 아규먼트가 몇 개가 전달되든 처리해야 한다.
+         아규먼트는 "1 이상의 숫자만" 온다고 정한다.
+         전달된 아규먼트들에서 "짝수에 해당하는 숫자들만 합을 계산"해서 리턴한다.
+         전달된 아규먼트들 중에 "짝수가 없으면 0을 리턴"한다.
+         아규먼트가 "전달되지 않으면 -1"을 리턴한다.
+  
+- 숫자를 다양하게 지정해서 sumEven1() 함수를 호출해 본다.
+
+
+[ 실습 10 ]
+<구현해야 하는 함수 사양>
+   함수명 : sumAll
+   매개변수 : 가변형(전달받을 수 있는 아규먼트 개수에 제한이 없다.)
+   리턴값 : 1개
+   기능 : 아규먼트가 몇 개가 전달되든 처리해야 한다.
+         호출시 전달되는 아규먼트의 데이터 타입에는 제한이 없다.
+         그러므로 전달된 아규먼트의 타입을 채크하여 숫자만 처리하고
+         숫자가 아닌 데이터는 무시한다.
+         아규먼트가 전달되지 않았거나 전달되었다 하더라도
+         숫자가 없으면 None 을 리턴한다.
+  
+- 숫자를 다양하게 지정해서 sumAll() 함수를 호출해 본다.
 ```
 
 
@@ -693,5 +738,47 @@ for i in range(5) :
     b = random.randint(1, 30)
     differtwovalue(a, b)
     print(a, "와 ", b, "의 차는 ", differtwovalue(a, b), " 입니다.")
+```
+
+
+
+```python
+#[실습8]
+def print_triangle_withdeco(num, deco = '%') :
+    if num > 10 or num < 1 :
+        return
+    for i in range(1,num+1) :
+        print(' ' * (10-i),end='')		#공백 부여
+        print(deco * i)
+```
+
+
+
+```python
+#[실습9]
+def sumEven1(*nums) :
+    even_sum = 0
+    if len(nums) >= 2 :
+        for i in nums :
+            if i % 2 == 0:
+                even_sum += i       #홀수는 저절로 합이 0 & 홀수는 계산 포함 안됨
+        return even_sum
+    else :
+        return -1
+```
+
+
+
+```python
+#[실습10]
+def sumAll(*nums):
+    sum = 0
+    for i in nums :
+        if type(i) == int:
+            sum += i
+    if sum == 0 :       # 인수에 0만 들어있어도 int이긴 하지만 "sum이 0"이기때문에 None처리 됨.
+        return None     #숫자가 아닌 데이터 들은 int가 아니여서 계산 안됐기 때문에 sum은 당연히 0이 되어서
+    return sum
+
 ```
 
