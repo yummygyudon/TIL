@@ -304,6 +304,8 @@ print(getlist1(3, 1,2,3,4,5,6,7))
 ## 키워드 가변 인수
 
 - **'* *'기호**를 인수 목록에 붙여서 가변 개수 전달
+  - Dictionary 형식으로 전달됨( {키(워드) : Value} )
+  - (a= ..., b=..., c=..., .....) 키워드 할당 값들을 제한없이 적을 수 있음
 - 위치 인수 & 키워드 인수 **동시**에 가변으로 취할 수 있음
 
 ```python
@@ -330,7 +332,7 @@ emp_func('홍길동', 35, addre='서울시', height=175, weight=65)
 def calcstrp(**args) :			#모든 인수들(위치는 언제든 바뀔 수 있다고 선언)
     begin = args['begin']		#변수명 자체에 이름에 해당하는 구성값들을
     end = args['end']			#따로 모아놓는 설정
-    step = args['step']
+    step = args['step']			#Dict 키값을 불러 해당 키워드로 저장된 Value 호출
     
     sum = 0
     for num in range(begin, end, step) :
