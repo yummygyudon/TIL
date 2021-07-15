@@ -347,9 +347,12 @@ print("전체평균 :", total / totalsub)
 
 ## 리스트 컴프리헨션 (Comprehension)_ 지능형 리스트
 
+
+
 - 합쳐주는 format(<리스트>)
 
 ```python
+#format을 통해 삽입
 numlist1 = []
 numlist1.append(1)
 numlist1.append(2)
@@ -385,7 +388,9 @@ list4 = [1, 2, 3, 4, 5]
 
 - 빈 리스트 `[]` 안에 반복문을 통한 삽입을 한 줄로 작성
 
-> **[**<수식>  **for**  <변수>  **in**  <리스트>  **if**  <조건>**]**	(꼭 이 형식이 다 포함되어야하는 건 아님.)
+> **[**<값 표현식>  **for**  <요소>  **in**  <Sequence>  **if**  <조건>**]**	(꼭 이 형식이 다 포함되어야하는 건 아님.)
+>
+> **[**<값 표현식>  **if**  조건식 **else** <값 표현식2> **for** <요소> **in** <Sequence> **]**
 
 ```python
 nums = []
@@ -400,6 +405,8 @@ for n in range(1,11) :
 [n*n for n in range(1,11) if n % 3 == 0]
 [9, 36, 81]
 
+
+#중첩 반복문
 #구구단
 gugulist1 = [ dan * num for dan in range(1, 10) for num in range(1, 10)]
 
@@ -422,6 +429,18 @@ list5 = [ d   if d % 2  else  '짝수' for d in range(1, 16)  ]
 
 list6 = [ '홀수'   if d % 2  else  '짝수' for d in range(1, 16)  ]
 print(list6)
+
+
+##리스트 생성 반복
+[[i + j for i in case_1] for j in case 2]	#대괄호를 꼭 붙여줘야함
+
+r1 = ["Black", "White"]
+r2 = ["Red", "Blue", "Green"]
+r3 = [ t + p for t in r1 for p in r2 ]
+
+print(r3)
+
+[['BlackRed', 'WhiteRed'], ['BlackBlue', 'WhiteBlue'], ['BlackGreen', 'WhiteGreen']]
 ```
 
 
