@@ -25,6 +25,24 @@ print(nums[::2])
 
 ```
 
+- **Unpacking**
+
+```python
+list = ['p', 'y', 't', 'h', 'o', 'n']
+
+v1, v2, v3, v4, v5,v6 = list
+
+print(v1)	#p
+print(v2)	#y
+print(v3)	#t
+print(v4)	#h
+print(v5)	#o
+print(v6)	#n
+
+print(*list, sep='') 		# *을 통해 각값들을 붙여서 괄호없이 출력
+python
+```
+
 
 
 ### 삽입

@@ -221,9 +221,10 @@ $ 10 $
 
 - 앞쪽에 키워드 인수 ▶ 뒤쪽엔 위치 인수 불가
 
-- 정의 위치에 따라 매개변수에 전달됨
 
-  - 실인수 앞에 매개변수 지정하면 위치 관계없이 전달 가능
+
+- 정의 위치에 따라 매개변수에 전달됨
+- 실인수 앞에 매개변수 지정하면 위치 관계없이 전달 가능
 
 
 ```python
@@ -247,10 +248,12 @@ normalfn(p1=10, p3=40, p2=20)
 40					#기본값이 지정되었기때문에 40이 나옴
 ```
 
+
+
 - 기본값이 지정되어 있으면 실인수가 없을 때, 기본값 출력
 
 ```python
-#디폴트(default) Argument
+#디폴트(default)_ 기본값 Argument
 def defaultfn1(p1=10, p2="abc", p3=True) :
     print(p1)
     print(p2)
@@ -279,8 +282,6 @@ P
 ```
 
 
-
-- 지정변수 활용
 
 
 - 구조 설정 및 데이터 삽입
@@ -578,7 +579,62 @@ lambda x, y : z= x + y
          숫자가 없으면 None 을 리턴한다.
   
 - 숫자를 다양하게 지정해서 sumAll() 함수를 호출해 본다.
+
+
+[ 실습 1 ]
+<구현해야 하는 함수 사양>
+   함수명 : mydict
+   매개변수 : 가변 키워드형(키=값 형식으로 전달받을 수 있는 아규먼트 개수에 제한이 없다.)
+   리턴값 : 1개
+   기능 :  아규먼트는 키=값 형식으로 전달되며 몇 개가 전달되든 처리해야 한다.
+             아규먼트가 한 개도 전달되지 않으면 비어있는 딕셔너리를 리턴한다.
+ 	 비어있는 딕셔너리를 생성한 다음 아규먼트로 전달된 키=값 쌍을 저장하는데  
+키는 앞에 my 를  붙여서 저장한다.
+              생성된 딕셔너리를 리턴한다.
+  
+3. 다양한 구성으로 키워드 아규먼트를 전달하면서 mydic() 함수를 호출하고 리턴 결과를 
+   화면에 출력한다.
+
+
+[ 실습 12 ]
+1. 파일명 : funcLab12.py
+2. 구현해야 하는 함수 사양
+   함수명 : myprint
+   매개변수 : 가변 아규먼트1개, 가변 키워드 아규먼트 1개
+   리턴값 : 없음
+   기능 : 전달되는 아규먼트의 개수에는 제한이 없다.
+         호출시 전달되는 아규먼트의 데이터 타입에도 제한이 없다. 
+         아규먼트가 전달되지 않으면 “Hello Python”을 출력한다.
+         출력 형식은 다음에 제시된 실행 결과 예시를 보고 처리하는데 한 번의 print() 함수로 처리한다.	
+ 
+ 	 myprint(10, 20, 30, deco="@", sep="-")  호출시
+     		
+     	▶	@10-20-30@ 출력
+     		
+	myprint("python", "javascript", "R", deco="$")  호출시
+     		
+     	▶	$python,javascript,R$ 출력
+     		
+	myprint("가", "나", "다")  호출시
+	
+     	▶	**가,나,다** 출력
+     		
+	myprint(100)  호출시
+     		
+     	▶	**100** 출력
+     		
+	myprint(True, 111, False, "abc", deco="&", sep="")  호출시
+     		
+     	▶	&True111Falseabc& 출력
+
+3. 위에 제시된 호출식들을 가지고 호출했을 때 위와 같은 결과가 출력되면 완성이다.
 ```
+
+
+
+
+
+ 
 
 
 
@@ -599,6 +655,8 @@ for _ in range(5)
 	print(print_book_publisher())
     
 ```
+
+
 
 ```python
 #[실습2]
@@ -664,7 +722,7 @@ def expr(num1, num2, cal) :
 
 expr = expr(6,2,"**")
 
-#풀이 1
+#풀이 1 출력명령
 if expr == None :
     print("수행 불가")
 else :
@@ -781,6 +839,53 @@ def sumAll(*nums):
     if sum == 0 :       # 인수에 0만 들어있어도 int이긴 하지만 "sum이 0"이기때문에 None처리 됨.
         return None     #숫자가 아닌 데이터 들은 int가 아니여서 계산 안됐기 때문에 sum은 당연히 0이 되어서
     return sum
+
+```
+
+
+
+```python
+#[실습11]
+def mydict(**args) :
+    myargs = {}
+    for k, v in args.items():
+        myargs["my" + k] = v    # myargs에 for문으로 "my"만 삽입
+    return myargs    #def와 라인을 맞추어서 인수 없을 때 빈 딕셔너리 반환
+
+print(mydict(name = "정동규", age = 23, height = 170))
+print(mydict(name = "정동규", age = 23))
+print(mydict())
+
+
+```
+
+
+
+
+
+```python
+#[실습12]
+#풀이 1
+def myprint (*p, deco="**",sep=",") :
+    if p is None :
+        print("Hello Python")
+    else :
+        print(deco, end="")
+        print(*p, sep=sep, end="")
+        print(deco)
+        
+        
+#풀이 2
+def myprint (*str_tuple, **str_dict) :
+    if len(str_tuple) == 0 :        #키워드 가변인수가 얼마나 와도 tuple값 없으면 어차피 출력 안되니까
+        print("Hello Python")
+        return
+    str_list = [ n for n in str_tuple]      #list에 str_tuple값 삽입
+    str_list[0] = str_dict.get("deco", "**") + str(str_list[0]) #list 첫번째 값 자체에 deco가 붙게끔 / .get()메서드는 첫번째 인수에 키워드명, 두번째 인수는 입력된 키워드가 없을 경우 갖게끔 할 데이터
+    str_list[-1] = str(str_list[-1]) + str_dict.get("deco", "**")
+    print(*str_list, sep=str_dict.get("sep", ","))  #list 언패킹 & get()메서드
+
+
 
 ```
 
