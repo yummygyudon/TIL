@@ -93,10 +93,47 @@ print(day[::-2])
 
   - 포함 = True / 미포함 = False 반환 ( not in 은 반대)
 
+  ```python
+  s = "python programming"
+  print('a' in s)
+  print('z' in s)
+  print('pro' in s)
+  print('x' not in s)
+  
+  True
+  False
+  True
+  True
+  ```
+
+  
+
 - `.startswith()` / `endswith()`
   - 시작 글자 확인 / 끝 글자 확인
   - 기준 문자열 길이 제한 없음
+  
+  ```python
+  name = "김한결"
+  if name.startswith("김"):
+      print("김가입니다.")
+  if name.startswith("한"):
+      print("한가입니다.")
+  
+  김가입니다.
+      
+      
+  file = "girl.jpg"
+  if file.endswith(".jpg"):
+      print("그림 파일입니다.")
+  
+  그림 파일입니다.    
+   
+  ```
+  
+  
+  
 - `.isalpha` / `.islower` / `.isupper` / `.isalnum` = 모든 문자의 알파벳 여부 / 소문자 여부 / 대문자 여부 /알파벳&숫자 여부
+
 - `.isnumeric` / `.isdigit` = 모든 문자의 숫자 여부
 
 - `.isspace` = 공백인지
@@ -106,18 +143,48 @@ print(day[::-2])
 ### 변경
 
 - `.lower()` / `.upper()` = 소문자화 / 대문자화
+
 - `.swapcase()` = 대소문자 **뒤집기**
+
 - `.capitalize()` = 문장의 **첫 글자 대문자**
+
 - `.title` = 모든 단어의 **첫 글자 대문자**
+
 - `.strip()` = **공백 제거**
   - `.rstrip` : 오른쪽 공백 제거 / `.lstrip` : 왼쪽 공백 제거
+
+    ```python
+    s = "  angel   "	#양쪽 공백
+    print(s + "님")
+    print(s.lstrip() + "님")
+    print(s.rstrip() + "님")
+    print(s.strip() + "님")
+    
+    
+      angel   님
+    angel   님
+      angel님
+    angel님
+    ```
+
+- `sorted()` : 정령_오름차순
+
+```python
+str1 = ['p','r','e','t','t','y','f','l','o','w','e','r']
+
+print("sorted: ", sorted(str1))# reverse=True
+sorted:  ['e', 'e', 'f', 'l', 'o', 'p', 'r', 'r', 't', 't', 'w', 'y']
+```
+
+
 
 ### 분할
 
 - `.split(<구분자>)` = 구분자 넣으면서 단어 분할
+  
   - 인수 없이 호출 ▶ "공백" 기준으로 분할
   - 구분자는 *출력되지 않음*
-
+  
 - `.splitlines()` = "개행문자" / "파일구분자" / "그룹구분자" 등을 기준으로 **문자열 분할**
 
 - `(삽입문자).join(삽입될 문자열)`
