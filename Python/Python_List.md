@@ -25,6 +25,8 @@ print(nums[::2])
 
 ```
 
+
+
 - **Unpacking**
 
 ```python
@@ -240,7 +242,7 @@ nums[:] = []
    ["CHINA", "Korea", "america", "japan"]	#자동대소문자 크기 비교
    
    country.sort(key = str.lower)
-   ["america", "CHINA", "japan", "Korea"] # 잠깐 변환
+   ["america", "CHINA", "japan", "Korea"] #소문자로 임시 변환 후 정렬
    ```
 
    
@@ -423,12 +425,18 @@ print(newlist10)
 ['rose', 'lily']
 
 
+#특정 문자열과 합성 (나머지_홀짝 특성 활용)
+list = [ 'pass_'+str(d)   if d % 2  else   'fail_'+str(d) for d in range(1, 16)  ]
+print(list)
+
+
+
 #홀/짝 출력
-list5 = [ d   if d % 2  else  '짝수' for d in range(1, 16)  ]
+list = [ d   if d % 2  else  '짝수' for d in range(1, 16)  ]
 ▶ range(1, 16)에서 d%2 값이 있으면 그대로 출력하고 0이되어 False가 되면 '짝수'로 출력
 
-list6 = [ '홀수'   if d % 2  else  '짝수' for d in range(1, 16)  ]
-print(list6)
+list = [ '홀수'   if d % 2  else  '짝수' for d in range(1, 16)  ]
+print(list)
 
 
 ##리스트 생성 반복
