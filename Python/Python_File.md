@@ -2,7 +2,7 @@
 
 
 
-## 입출력
+## 파일 입출력 함수
 
 ### 1. 파일 쓰기
 
@@ -227,4 +227,125 @@ print(text)		#close 메서드를 사용하지 않아도 됨
 ```
 
 - with의 사전적 의미처럼 *<u>"이 속성을 장착한 채  함께 내부명령 수행"</u>*
+
+
+
+
+
+
+
+## 파일관리 함수
+
+> 파일 **자체**를 다루는 함수
+
+
+
+### 파일 관리
+
+"복사" / "삭제" / "이름 변경" / "정보 조사" 등등 *<u>탐색기</u>*에서 수행하는 대부분의 명령을 함수로 실행 가능
+
+#### 1) Shutil
+
+| 함수                        | 설명                                                   |
+| --------------------------- | ------------------------------------------------------ |
+| shutil.**copy**( a, b)      | **파일**을 **복사**                                    |
+| shutil.**copytree**( a, b)  | **디렉토리** 를 **복사** ('*서브 디렉토리* '까지 전부) |
+| shutil.**move**( a, b )     | **파일**을 **이동**                                    |
+| shutil.**rmtree**( [path] ) | **디렉토리**를 **삭제**                                |
+
+#### 2) OS
+
+| 함수                        | 설명                 |
+| --------------------------- | -------------------- |
+| os.**rename**( a, b )       | 파일 **이름 변경**   |
+| os.**remove**( f )          | 파일 **삭제**        |
+| os.**chmod**( file , mode ) | 파일 **퍼미션 변경** |
+| os.**link**( a, b )         | **하드 링크** 생성   |
+| os.**symlink**( a, b )      | **심볼릭 링크** 생성 |
+
+
+
+### 디렉토리 관리
+
+- 디렉토리(directory_파일을 저장하는 곳)
+  - d 변수엔 **"[Directory Path]"**
+
+| 함수                 | 설명                                              |
+| -------------------- | ------------------------------------------------- |
+| os.**chdir** ( d )   | **현재 위치**를 *<u>해당 디렉토리</u>*로 **변경** |
+| os.**mkdir**( d )    | 디렉토리 **생성**                                 |
+| os.**rmdir**( d )    | 디렉토리 **제거**                                 |
+| os.**listdir** ( d ) | 디렉토리 **내용 나열**                            |
+| os.**getcwd** ( d )  | 현 디렉토리 **조사**                              |
+
+- `.listdir` 사용 시, 해당 디렉토리 없으면 *<u>오류</u>*
+
+```python
+import os
+
+# c드라이브에 temp디렉토리 없으면 오류발생
+files = os.listdir("c:\\Temp")  #역슬래쉬 하나 or 슬래쉬 사용해도 가능
+print(type(files))
+for f in files:
+    print(f)
+    
+▶ [해당 디렉토리 내부 파일들 나열]
+.
+.
+.
+```
+
+
+
+#### 1) os.path 모듈
+
+> **OS** 모듈 내부에 내장 ( import os )
+
+| 함수                       | 설명                      |
+| -------------------------- | ------------------------- |
+| os.path.**isfile** ( f )   | "**파일**인지" 조사       |
+| os.path.**isdir** ( f )    | "**디렉토리**인지" 조사   |
+| os.path.**exists** ( f )   | "**파일 존재" 여부** 조사 |
+| os.path.**isabs** ( f )    | "**절대 경로**인지" 조사  |
+| os.path.**abspath** ( f )  | 파일의 **절대경로 출력**  |
+| os.path.**realpath** ( f ) | **원본 파일 경로 출력**   |
+
+- 디렉토리 내부에 '*<u>서브 디렉토리</u>*' 있을 때, **재귀함수** → "전체 파일 목록" 순회하여 **개별 파일 경로** 출력
+
+```python
+import os
+
+def dumpdir(path):  #주소 조회
+    files = os.listdir(path) #해당 dir 내부 파일들 list
+    for f in files: #내부파일의 내부파일
+        fullpath = path + "\\" + f  #그 내부파일들의 총 주소(상위 파일명까지)
+        if os.path.isdir(fullpath):
+            print("[" + fullpath + "]")
+            dumpdir(fullpath)   #위 선언 함수를 재사용(재귀함수) [서브 디렉토리] 소속 파일들 내역 출력
+        else:
+            print("\t" + fullpath)  #isdir false일때(디렉토리가 아니라 그저 파일일때)
+
+dumpdir("c:\\JDG\\PYTHONexam")
+```
+
+
+
+- **String 함수**와 **Indexing** 등을 활용하여 파일명 구조 변경
+
+```python
+import os
+
+path = "C:\\Temp"
+files = os.listdir(path)
+for f in files:
+    if (f.find("_") and f.endswith(".jpg")):
+        name = f[0:-4]	#(파일형식 제외) 이름만 추출
+        ext = f[-4:]	#역순으로 파일형식만 추출
+        part = name.split("_")#'_'기준으로 이름 분리
+        newname = part[1].strip() + "-" + part[0].strip()+"-new" + ext 
+        #뒤에있던 단어(part 리스트의 2번째 값)가 먼저 출력됨 & 구분자를 "-"로 변경
+        print(newname)
+        os.rename(path + "\\" + f, path + "\\" + newname) #변경파일 path까지 수정
+
+```
 
