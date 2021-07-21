@@ -106,3 +106,50 @@ if __name__ == "__main__" :
 
 
 
+※< **[패키지] . [디렉토리] . [모듈] ** > 형태로 호출
+
+```python
+#sys모듈을 통해 모듈의 주소 등록
+import sys
+sys.path.append("C:/PyStudy")
+
+#'mypack' 패키지의 'clac' 디렉토리 속 'add'모듈 호출
+import mypack.calc.add
+mypack.calc.add.outadd(1,2)
+
+import mypack.report.table
+mypack.report.table.outreport()
+```
+
+
+
+하지만 매번 이렇게 호출하면 번거롭다.
+
+간략히 사용하기 위해선
+
+- `as`를 통하여 별칭에   호출식을 저장하여  **[별칭].[함수명]** 으로 사용할 수 있음.
+
+- `from [패키지].[디렉토리] import [모듈]`을 통해 **[모듈].[함수]**로 사용
+- `from [패키지].[디렉토리].[모듈] import [함수]`을 통해 **[함수] (args)**로 사용
+  - 단 함수만 호출했기 때문에 *<u>같은 모듈의 다른 함수</u>* **사용 불가**
+
+```python
+#'my1'이라는 별칭에 path 저장
+import mypack.calc.add as my1
+my1.outadd(1,2)
+
+import mypack.report.table as my2
+my2.outreport()
+
+from mypack.calc import add
+add.outadd(1,2)
+
+from mypack.calc import add as abc
+abc.outadd(1,2)
+
+```
+
+
+
+
+
