@@ -5,7 +5,9 @@
 
     1 2 3 4 5 6 7 8 9 10
 '''
-
+for num in range(1,11) :
+    print(num, end= '')
+print()
 
 
 '''
@@ -19,7 +21,9 @@
     3
     4
 '''
-
+for num2 in range(5) :
+    print(num2)
+print()
 
 
 '''
@@ -32,7 +36,9 @@
     @
     @
 '''
-
+for i in range(5) :
+    print("@")
+print()
 
 
 '''
@@ -47,6 +53,11 @@
     5 : 홀수
     4 : 짝수
 '''
+for a in range(9,4,-1) :
+    if a % 2 != 0 :
+        print(f"{a} : 홀수")
+    else :
+        print(f"{a} : 짝수")
 
 
 
@@ -59,6 +70,15 @@
 
     X 부터 Y 까지의 짝수의 합 : ZZ
 '''
+import random
+start = random.randint(1,10)
+end = random.randint(30, 40)
+
+sum = 0
+for i in range(start, end+1) :
+    if i % 2 == 0 :
+        sum += i
+print(f"{start} 부터 {end} 까지의 짝수의 합 : {sum}")
 
 
 
@@ -75,5 +95,11 @@
     짝수의 합은 XXX 이고 
     홀수의 합은 YYY 이다.
 '''
-
-
+evenNum = 0
+oddNum = 0
+for num in range(1,101) :
+    if num % 2 == 0 :
+        evenNum += num
+    else :
+        oddNum += num
+print(f"1부터 100까지의 숫자들 중에서 \n짝수의 합은 {evenNum}이고 \n홀수의 합은 {oddNum}이다.")
