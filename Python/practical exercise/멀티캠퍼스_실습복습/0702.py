@@ -13,7 +13,11 @@
      	7 -> 49
 '''
 import random
-
+num = random.randint(5, 10)
+i = 1
+while i <= num :
+    print(f"{i} -> {i*i}")
+    i+=1
 
 
 '''
@@ -29,8 +33,21 @@ import random
     
     추출된 두 개의 숫자가 동일하면 "게임 끝"이라는 메시지를 출력하고 종료한다
 '''
+pairNum1 = random.randint(1, 6)
+pairNum2 = random.randint(1, 6)
 
-
+while True:
+    pairNum1 = random.randint(1, 6)
+    pairNum2 = random.randint(1, 6)
+    if pairNum1 > pairNum2 :
+        print("pairNum1이 pairNum2보다 크다.")
+        continue
+    elif pairNum1 < pairNum2:
+        print("pairNum1이 pairNum2보다 작다.")
+        continue
+    else:
+        print("게임 끝")
+        break
 
 '''
 [ 실습3 ] - while 문으로 무한루프 처리
@@ -41,13 +58,21 @@ import random
     27~30이 추출되면 반복을 끝낸다.
 
     반복하는 동안 출력형식 :  	
-B(2)
-    			A(1)
+            B(2)
+    		A(1)
 			D(4)
 			  :
     마지막에는 "수행횟수는 x 번입니다"를 출력하고 종료한다. 수행 횟수는 출력을 기준으로 계산한다
 '''
-
+i = 0
+while True:
+    num2 = random.randint(0, 30)
+    if 27 > num2 > 0 :
+        print(f"{chr(64+num2)}({num2})")
+        i += 1
+    elif num2 == 0 or num2 >= 27 :
+        print(f"수행횟수는 {i} 번입니다.")
+        break
 
 
 '''
@@ -64,7 +89,19 @@ B(2)
        입력된 숫자가 1~12 사이가 아니면 1~12 사이의 값을 입력하세요! 를 출력하고
        종료한다.
 '''
-
+while True:
+    month = int(input("월 : "))
+    if month >12 or month < 0 :
+        print("1~12 사이의 값을 입력하세요!")
+        break
+    elif month <= 2 or month == 12 :
+        print(f"{month}월은 겨울")
+    elif month <= 5 and month >= 3 :
+        print(f"{month}월은 봄")
+    elif month <= 8 and month >= 6 :
+        print(f"{month}월은 여름")
+    else :
+        print(f"{month}월은 가을")
 
 
 '''
@@ -103,8 +140,18 @@ B(2)
 문자열을 입력하시오 :
 
 '''
-
-
+while True:
+    word = input("문자열을 입력하시오 : ")
+    wordlength = len(word)
+    if wordlength == 0 :
+        break
+    elif 5 <= wordlength <= 8 :
+        continue
+    elif wordlength < 5 :
+        result = f"*{word}*"
+    elif wordlength > 8 :
+        result = f"${word}$"
+    print("유효한 입력 결과 : ", result)
 
 '''
 [ 실습6 ] - while 문으로 무한루프 처리
@@ -129,3 +176,22 @@ B(2)
 0 이 입력되면
 	종료
 '''
+while True :
+    num3 = int(input("숫자를 입력하시오 : "))
+    if num3 == 0 :
+        print("종료")
+        break
+    elif num3 > 10 or num3 < -10 :
+        continue
+    elif num3 > 0 :
+        print(f"입력값 : {num3}")
+        i = 0
+        for i in range(1, num3) :
+            i *= i
+        print(i)
+    elif num3 < 0 and num3 >= -10:
+        print(f"입력값(부호변경) : {abs(num3)}")
+        i = 0
+        for i in range(1, abs(num3)):
+            i *= i
+        print(i)

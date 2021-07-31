@@ -11,8 +11,17 @@
    기능 : 파이썬 교재의 출판사명을 화면에 출력
 3. print_book_title() 함수를 3회 호출하고 print_book_publisher() 함수를 5회 호출한다.
 '''
+def print_book_title() :
+    for _ in range(3) :
+        print("파이썬 정복")
+
+def print_book_publisher() :
+    for _ in range(5) :
+        print("한빛 미디어")
 
 
+print(print_book_title())
+print(print_book_publisher())
 
 '''
 [ 실습 2 ]
@@ -29,7 +38,18 @@
 3. get_book_title() 함수를 호출하고 리턴되는 결과를 name 변수에 저장한 다음 name 변수의 값을 2회 
   출력한다. get_book_publisher() 함수를  호출하고 리턴되는 결과를 화면에 출력한다.
 '''
+def get_book_title() :
+    return "파이썬 정복"
 
+def get_book_publisher() :
+    return"힌빛미디어"
+
+name = get_book_title()
+
+for _ in range(2) :
+    print(name)
+
+print(get_book_publisher())
 
 
 '''
@@ -44,8 +64,23 @@
 3. 숫자 2개와 연산자 1개를 전달하여 expr() 이라는 함수를 호출한 다음 리턴 결과가 None 이면
    수행 불가 를 출력하고 그렇지 않으면 연산결과 : XX 를 출력한다.
 '''
+def expr(num1, num2, cal) :
+    if cal == "+" :
+        return num1 + num2
+    elif cal == "-" :
+        return num1 - num2
+    elif cal == "*" :
+        return num1 * num2
+    elif cal == "/" :
+        return num1 / num2
+    else:
+        return None
 
-
+expr = expr(6,2,"*")
+if expr == None :
+    print("수행 불가")
+else :
+    print("연산결과 : ", expr)
 
 '''
 [ 실습 4 ]
@@ -69,8 +104,13 @@
 3. 숫자를 다양하게 지정해서 print_triangle() 함수를 호출해 본다.
 
 '''
-
-
+def print_triangle(x) :
+    if 10 >= x >= 1 :
+        for i in range(1,x+1) :
+            print(i*"*")
+    else:
+        return
+print_triangle(10)
 
 '''
 [ 실습 5 ]
@@ -94,7 +134,13 @@
 
 3. 숫자를 다양하게 지정해서 print_triangle() 함수를 호출해 본다.
 '''
+def print_triangle(a) :
+    if a > 10 or a < 1 :
+        return
+    for i in range(a, 0, -1):
+        print("@" * i)
 
+print_triangle(8)
 
 
 '''
@@ -110,7 +156,16 @@
          - 그 외의 경우에는 해당 단의 구구단을 행 단위로 출력한다.\\
 3. 숫자를 다양하게 지정해서 print_ gugudan() 함수를 호출해 본다.
 '''
+def print_gugudan(gugu_num1) :
+    if type(gugu_num1) != int :
+        return
+    elif  10 < gugu_num1 or 0 > gugu_num1 :
+        return
+    else :
+        for i in range(1, 10) :
+            print(f"{gugu_num1} * {i} : {gugu_num1*i}")
 
+print_gugudan(9)
 
 '''
 [ 실습 7 ]
@@ -130,3 +185,17 @@
    "X 와 Y 의 차는 W 입니다."
    ----> 5 회 반복
 '''
+def differtwovalue(num1, num2) :
+    if num1 == num2 :
+        return 0
+    else :
+        z = abs(num1 - num2)
+        return z
+
+import random
+
+for i in range(5) :
+    a = random.randint(1, 30)
+    b = random.randint(1, 30)
+    differtwovalue(a, b)
+    print(a, "와 ", b, "의 차는 ", differtwovalue(a, b), " 입니다.")
