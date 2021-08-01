@@ -12,7 +12,23 @@ c:/iotest 디렉토리의 존재여부를 채크하고 존재하지 않으면 �
 
 파일에 위의 내용을 저장한 다음에 화면에는“저장이 완료되었습니다.”를 출력한다.
 '''
+import datetime
+import calendar
 
+now = datetime.datetime.now()
+year = now.year
+month = now.month
+date = now.day
+
+day = ["월", "화", "수", "목", "금", "토", "일"]
+birtday= calendar.weekday(1999, 12, 4)
+
+f= open("today.txt", "wt", encoding="utf-8")
+f.write(f"""오늘은 {now.year}년 {now.month}월 {now.day}일입니다.
+오늘은 {day[calendar.weekday(now.year, now.month, now.day)]}요일입니다.
+나는 {day[birtday]}요일에 태어났습니다.""")
+f.close()
+print("저장이 완료되었습니다.")
 
 '''
 [ 실습 2 ]
@@ -24,8 +40,13 @@ sample_yyyy_mm_dd.txt 파일에 계속 추가되게 한다.
 
 위의 내용을 파일에 저장하는 기능이 정상적으로 수행되면 화면에 “저장이 완료되었습니다.”
 '''
-
-
+sample = open("sample.txt", "rt", encoding="utf-8")
+sample_data = sample.read()
+sample.close()
+f = open(f"sample_{now.year}.{now.month:02d}.{now.day:02d}.txt", "at", encoding="utf-8")
+f.write(sample_data+f"\n\n확인날짜 : {now.year}년 {now.month}월 {now.day}일\n\n")
+f.close()
+print("수정내역 업데이트 되었습니다.")
 
 '''
 [ 실습 3 ]
@@ -37,7 +58,16 @@ sample_yyyy_mm_dd.txt 파일에 계속 추가되게 한다.
 다시 입력받는다. 숫자 입력을 잘 할때까지…… 
 년도와 월이 제대로 입력되면 해당 년월의 달력을 출력한다.
 '''
-
+while True :
+        x = int(input("달력을 출력하고 싶은 연도를 입력하시오 :"))
+        y = int(input("원하는 월을 입력하시오 : "))
+        try :
+            year = int(x)
+            month = int(y)
+            print(calendar.month(x, y))
+            break
+        except (IndexError, ValueError) as e :
+            print(e)
 
 '''
 [ 실습 4 ]
@@ -51,3 +81,13 @@ FileNotFoundError 발생시 파일을 읽을 수 없어요 를 출력하고 종�
 (try-except-else-finally 를 모두 사용해서 해결한다.)
 
 '''
+try :
+    with open("yesterday.txt") as file :
+        yesterday = file.read()
+        count = yesterday.lower().count("yesterday")
+except FileNotFoundError :
+    print("파일을 읽을 수 없어요.")
+else :
+    print("Number of a word 'Yesterday'", count)
+finally :
+    print("수행완료!!")

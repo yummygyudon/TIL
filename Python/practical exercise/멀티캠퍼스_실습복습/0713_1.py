@@ -21,7 +21,15 @@
         처리하지 않는다.
 3. 숫자를 다양하게 지정해서 print_triangle_withdeco () 함수를 호출해 본다.
 '''
+def print_triangle_withdeco(num, deco = "%") :
+    if num > 10:
+        pass
+    else:
+        for i in range(1,num+1) :
+            print(" "*(10-i), end="")
+            print(deco*i)
 
+print_triangle_withdeco(10, "@")
 
 '''
 [ 실습 2 ] - 최댓값을 구하는 기능은 함수를 사용하지 않고 제어문으로 직접 구현한다.
@@ -32,8 +40,17 @@
 
 	최댓값 : 21 
 '''
+listnum = [10, 5, 7, 21, 4, 8, 18]
 
+print(f"최댓값 : {max(listnum)}")
 
+max_num = listnum[0]
+
+for num in listnum :
+    if max_num < num:
+        max_num = num
+
+print('최댓값 : ', max_num)
 '''
 [ 실습 3 ] - 최솟값을 구하는 기능은 함수를 사용하지 않고 제어문으로 직접 구현한다.
 1. listLab2.py 이라는 소스를 생성한다.
@@ -42,8 +59,17 @@
 3. listnum 에 저장된 값들 중에서 최솟값을 추출하여 다음과 같이 출력한다.
 	최솟값 : 4 
 '''
+# listnum 리스트는 위에서 그대로
 
+print(f"최솟값 : {min(listnum)}")
 
+min_num = listnum[0]
+
+for num in listnum :
+    if min_num > num:
+        min_num = num
+
+print('최솟값 : ', min_num)
 
 '''
 [ 실습 4 ] - 최댓값과 최솟값을 구하는 기능은 함수를 사용하지 않고 제어문으로 직접 구현한다.
@@ -53,8 +79,16 @@
 3. listnum 에 저장된 값들 중에서 최댓값 최솟값을 추출하여 다음과 같이 출력한다.
 	최솟값 : 5, 최댓값 : 21 
 '''
+max_num2 = listnum[0]
+min_num2 = listnum[0]
 
+for i in listnum :
+    if i > max_num2 :
+        max_num2 = i
+    elif i < min_num2 :
+        min_num2 = i
 
+print(f"최솟값 : {min_num2}, 최댓값 : {max_num2}")
 
 '''
 [ 실습 5 ]
@@ -75,8 +109,39 @@
 14. 슬라이싱 방법으로 2~3번째 데이터를 삭제한다.
 15. 슬라이싱 방법으로 listnum의 데이터를 모두 출력한다.
 '''
-
-
+#2
+listnum2 = []
+#3 & 4
+import random
+for rand_num in range(10) :
+    rand_num = random.randint(1, 50)
+    listnum2.append(rand_num)
+print(listnum2)
+#5,6
+for a in range(len(listnum2)) :
+    if listnum2[a] < 10 :
+        listnum2[a] = 100
+print(listnum2)
+#7
+print(listnum2[0])
+#8
+print(listnum2[len(listnum2)-1])
+print(listnum2[-1])
+#9
+print(listnum2[1:6])
+#10
+print(listnum2[::-1])
+#11
+print(listnum2[0::])
+#12
+del listnum2[4]
+#13
+print(listnum2[0::])
+#14
+del listnum2[1:3]
+listnum2[1:3] = []
+#15
+print(listnum2[0::])
 
 '''
 [ 실습 6 ]
@@ -93,8 +158,17 @@
   
 3. 숫자를 다양하게 지정해서 sumEven1() 함수를 호출해 본다
 '''
+def sumEven(*args) :
+    if len(args) == 0 :
+        return -1
+    else :
+        even_sum = 0
+        for i in args :
+            if i % 2 ==0 :
+                even_sum += i
+        return even_sum
 
-
+print(sumEven(1, 3, 65, 10))
 
 '''
 [ 실습 7 ]
@@ -110,3 +184,11 @@
   
 3. 숫자를 다양하게 지정해서 sumAll() 함수를 호출해 본다.
 '''
+def sumAll(*nums) :
+    result = 0
+    for i in nums :
+        if type(i) == int :
+            result += i
+    if result == 0 :
+        return None
+    return result
