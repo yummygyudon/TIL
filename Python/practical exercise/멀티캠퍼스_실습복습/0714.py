@@ -14,8 +14,15 @@
 3. 다양한 구성으로 키워드 아규먼트를 전달하면서 mydic() 함수를 호출하고 리턴 결과를
    화면에 출력한다.
 '''
+def mydict(**args) :
+    if args is None :
+        return {}
+    else :
+        dict(args)
+        for key in args :
+            print(f"my{key} : {args[key]}")
 
-
+mydict(NumA=10, NumB=20)
 '''
 [ 실습 2 ]
 1. 파일명 : funcLab12.py
@@ -39,8 +46,20 @@
 	myprint(True, 111, False, "abc", deco="&", sep="")  호출시
      		&True111Falseabc& 출력
 '''
+def myprint(*a, deco="**", sep =','):
+    if a is None :
+        return print("Hello Python")
+    else :
+        print(deco, end='')
+        print(*a, sep=sep, end='')
+        print(deco)
 
 
+myprint(10, 20, 30, deco="@", sep="-")
+myprint("python", "javascript", "R", deco="$")
+myprint("가", "나", "다")
+myprint(100)
+myprint(True, 111, False, "abc", deco="&", sep="")
 
 '''
 [ 실습 3 ]
@@ -69,8 +88,20 @@
 3. 다양한 구성으로 아규먼트를 전달하면서 createList() 함수를 호출하고 리턴 결과를 
    화면에 출력한다.
 '''
+def createList(*a, type = 1) :
+    if len(a) == 0 or type > 4 :
+        arg = [i for i in range(1, 30)]
+    elif type == 2 :
+        arg = [i for i in a if i % 2 == 0]
+    elif type == 3 :
+        arg = [i for i in a if i % 2 == 1]
+    elif type == 4 :
+        arg = [i for i in a if i > 10]
+    elif type == 1 :
+        arg = [i for i in a]
+    return arg
 
-
+print(createList(1, 11, 23, 5, 100, 27, type=4))
 
 '''
 [ 실습 4 ]
@@ -84,7 +115,13 @@
 2. 다양한 구성으로 가변 키워드 아규먼트를 전달하면서 mycompredict() 함수를 호출하고 리턴 
 결과를 화면에 출력한다.
 '''
-
+def mycompredict(**args) :
+    if args is None :
+        return {}
+    else:
+        dict_comp = dict(args)
+        my_dict = {"my"+key : value for key, value in dict_comp.items()}
+        print(my_dict)
 
 
 '''
@@ -100,7 +137,14 @@
 3. 아규먼트를 전달하면서 myemail_info() 함수를 여러 번 호출하고 리턴 결과를 
    화면에 출력한다.
 '''
+def myemail_info(email) :
+    if "@" in email:
+        email_id = tuple(email.split("@"))
+        return email_id
+    else:
+        return None
 
+print(myemail_info("duck9912@naver.com"))
 
 
 '''
@@ -118,7 +162,52 @@ s6 = '891022-2473837'
 (9) s8 에서 ' Z'  의 위치를 출력한다.
 (10) s8 에서 모두 대문자로 변환한 후 공백단위로 분리해서 리스트로 만들어 출력한다.
 '''
+#(1)
+s1 = "pythonjavascript"
+print(len(s1))
 
+#(2)
+s2 = "010-7777-9999"
+phone = s2.split("-")
+for i in phone :
+    print(i, end='')
+print()
+
+#(3)
+s3 = "PYTHON"
+print(s3[::-1])
+
+#(4)
+s4 = "Python"
+print(s4.lower())
+
+#(5)
+s5 = "https://www.python.org/"
+print(s5[s5.find("w"):s5.rfind("/")])
+
+#(6)
+s6 = '891022-2473837'
+if int(s6[-7])%2 == 0:
+    print("여성")
+else :
+    print("남성")
+
+#(7)
+s7 = '100'
+if type(s7) == str :
+    s7 = int(s7)
+    if type(s7) != float :
+        print(float(s7))
+#(8)
+s8 = ' The Zen of Python'
+print(s8.count("n"))
+
+#(9)
+print(s8.find('Z'))
+
+#(10)
+s10 = s8.upper()
+print(list(s10.split()))
 
 '''
 [ 실습 7 ]
@@ -126,7 +215,10 @@ s6 = '891022-2473837'
 아래 리스트 항목 중에서 소문자만 추출해서 리스트를 생성하여 listv2에 저장하고 출력한다.(리스트 컴프리헨션 사용)
 listv1 = ["A", "b", "c", "D", "e", "F", "G", "h"]
 '''
+listv1 = ["A", "b", "c", "D", "e", "F", "G", "h"]
 
+listv2 = [i for i in listv1 if i > "Z" ]
+print(listv2)
 
 
 '''
@@ -139,8 +231,21 @@ listv3 = [ 'p', 'y', 't', 'h', 'o', 'n' ]
 (2) listv3 를 언패킹하여 print()  함수에 전달하여 출력한다.  p y t h o n     
 (3) listv3 를 그냥 print()  함수에 전달하여 출력한다.     ['p', 'y', 't', 'h', 'o', 'n']
 '''
+listv3 = [ 'p', 'y', 't', 'h', 'o', 'n' ]
+#(1)
+v1, v2, v3, v4, v5, v6 = listv3
+print(v1)
+print(v2)
+print(v3)
+print(v4)
+print(v5)
+print(v6)
 
+#(2)
+print(*listv3)
 
+#(3)
+print(listv3)
 
 '''
 [ 실습 9 ]
@@ -153,3 +258,13 @@ listv3 = [ 'p', 'y', 't', 'h', 'o', 'n' ]
 
 {1:'nopass', 2:'nopass', 3:'nopass', 4:'nopass', 5:'pass', 6:'pass', 7:'pass', 8:'nopass',9:'pass', 10:'pass'}
 '''
+import random
+
+rand_lst = []
+while len(rand_lst) < 10 :
+    rand_lst.append(random.randint(0,100))
+
+rand_dict = {i+1 : rand_lst[i] for i in range(len(rand_lst))}
+pass_dict = { key : 'pass' if value >= 60 else "nopass" for key, value in rand_dict.items() }
+
+print(pass_dict)
