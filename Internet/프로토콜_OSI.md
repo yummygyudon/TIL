@@ -153,7 +153,7 @@
 
 
 
-③ **FDDI** (Fiber Distributed Data Interface_파이버 분산형 데이터 인터페이스) 
+③ **FDDI** (Fiber Distributed Data Interface_**파이버 분산형 데이터 인터페이스**) 
 
 - **근거리 통신망의 데이터 전송 표준**이다.
 - *<u>"광섬유 분산 데이터 인터페이스"</u>* 혹은 *<u>"광섬유 분산 데이터 접속 방식"</u>* 이라고 한다.
@@ -181,7 +181,7 @@
 
 
 
-⑦ **HDLC** ( Hugh-Level Data-Link Control )
+⑦ **HDLC** ( High-Level Data-Link Control )
 
 - 고속 데이터 전송에 적합하다.
 - 비트 전송을 기본으로 하는 <u>*범용 데이터 링크 전송 제어*</u> 절차이다.
@@ -219,36 +219,17 @@ OSI 모델 중 가장 복잡한 계층 중 하나로
 
 
 
-③ **ICMP** ( Internet Control Message Protocol )
+③ **ICMP** ( Internet **Control Message** Protocol )
 
 - ( TCP/IP에서 ) IP 패킷을 처리할 때 발생되는 문제/오류를 알림
 - ( 인터넷 스위트 - IP계층 ) 필요한 기타 기능들을 수행하기 위해 사용된다.
 
 
 
-④ **IGMP** ( Internet Group Management Protocol)
+④ **IGMP** ( Internet **Group Management** Protocol)
 
 - IP 멀티캐스트 실현을 위한 통신 프로토콜
 - "라우터" 관련 규약으로 PC가 멀티캐스트로 통신할 수 있다는 것을 통지
-
-
-
-③ **OSPF** ( Open Shortest Path First  : **최단 경로 우선 프로토콜** )
-
-> <span style="color : grey;font-size : 14px">IP 위에 위치해서 작동해서 OSI모델에서 3계층인지 4계층인지 혼란스럽지만 3계층 네트워크 계층에서 설명하겠다.[출처 : https://www.enterprisenetworkingplanet.com/standards-protocols/networking-101-understanding-ospf-routing-part-2/]</span>
-
-- **IP (인터넷프로토콜)** 네트워크를 위한 ***링크상태 프로토콜 (Link State Routing Protocol)*** 
-
-- 관리자가 일일이 경로를 지정하지 않아도 패킷이 알아서 길을 찾는 **동적 라우팅 프로토콜** 중 하나
-
-- <u>링크 스테이트 라우팅 알고리즘</u> (링크 상태를 확인하여 최단 경로 찾는 알고리즘) 을 사용
-
-- *동적 라우팅 프로토콜 中* .. 
-
-  "대기업망"에서 가장 많이 쓰이는 **내부 게이트웨이 프로토콜 (IGP)**로 간주됨.
-
-  - (동적 라우팅 프로토콜) **IS-IS** : 대형 서비스 제공자망에서 일반적으로 쓰임
-  - (동적 라우팅 프로토콜_**외부 게이트웨이 프로토콜** ) **BGP** : 인터넷 상에서  <u>자율시스템 간</u>에 쓰이는 주요 라우팅 프로토콜
 
 
 
@@ -311,6 +292,25 @@ OSI 모델 중 가장 복잡한 계층 중 하나로
 
 
 
+③ **OSPF** ( Open Shortest Path First  : **최단 경로 우선 프로토콜** )
+
+> <span style="color : grey;font-size : 14px">IP 위에 위치해서 작동해서 OSI모델에서 3계층인지 4계층인지 혼란스럽지만 4계층 전송 계층에서 설명하겠다.[출처 : https://www.enterprisenetworkingplanet.com/standards-protocols/networking-101-understanding-ospf-routing-part-2/]</span>
+
+- **IP (인터넷프로토콜)** 네트워크를 위한 ***링크상태 프로토콜 (Link State Routing Protocol)*** 
+
+- 관리자가 일일이 경로를 지정하지 않아도 패킷이 알아서 길을 찾는 **동적 라우팅 프로토콜** 중 하나
+
+- <u>링크 스테이트 라우팅 알고리즘</u> (링크 상태를 확인하여 최단 경로 찾는 알고리즘) 을 사용
+
+- *동적 라우팅 프로토콜 中* .. 
+
+  "대기업망"에서 가장 많이 쓰이는 **내부 게이트웨이 프로토콜 (IGP)**로 간주됨. 
+
+  - (동적 라우팅 프로토콜) **IS-IS** : 대형 서비스 제공자망에서 일반적으로 쓰임
+  - (동적 라우팅 프로토콜_**외부 게이트웨이 프로토콜** ) **BGP** : 인터넷 상에서  <u>자율시스템 간</u>에 쓰이는 주요 라우팅 프로토콜
+
+
+
 
 
 #### L5)  세션 계층 (Session Layer)
@@ -335,25 +335,89 @@ TCP/IP의 **세션 관리** [ *''확립 '', ''유지 '', ''중단 ''* 등] 부�
 
 ① **FIFO** (이름있는 파이프 _ Named PIPE)
 
-https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)
+ : 보통 FIFO라 함은 **First In First Out** 의 약어로 **선입선출**의 의미로 사용된다.
+
+과거 외식업에서 일했을 때에도 재고관리할 때, 많이 썼던 용어인데 (*TMI...* )
+
+컴퓨터 과학에서 다룰 땐,
+
+" *대기열에 저장된 자료* "를 처리하는 방식 중 하나인데
+
+프로토콜에서의 의미를 풀어보자면 **복수의 호출(Call)/처리(Job)**이 <u>처리 대기</u> 상태로 되어 있을 때,
+
+처리의 우선순위를 고려하지 않고 **먼저 도착한 순서대로 처리**하는 방식을 행한다고 보면 된다.
+
+또한,
+
+위 이름에 "이름있는 파이프(Named Pipe)"를 볼 수 있는데 
+
+프로세스 간에 통신을 위한
+
+파이프 및 필터 모델을 지원하는 환경에서
+
+FIFO는 **NamedPIPE_명명된 파이프**의 또 다른 이름이라고 한다. 
+
+디스크 컨트롤러에서는 FIFO를 **디스크 스케줄링 알고리즘**으로 사용하여 **I/O(입출력)**요청을 처리하는 순서를 정하고
+
+컴퓨터 네트워크에선 <u>*통신 네트워크 브리지*</u>, <u>*스위치*</u>, <u>*라우터*</u> 에서는 FIFO를 사용하여 
+
+데이터 패킷을 다음 목적지로 가는 경로(**특정 이름이 붙여진 파이프**)에 보관하고 전달하게끔한다.
+
+(<u>*서로 관련 없는 프로세스 간 통신*</u>에 사용된다._ 부모 프로세스와 자식 프로세스 간 통신 방법인 Unamed PIPE와 상반됨.)
+
+일반적으로  *네트워크 연결당*  하나 이상의 FIFO 구조가 사용되고,
+
+일부 장치에서는 여러 유형의 정보를 동시에 독립적으로 큐잉하기 위한 여러 FIFO가 있다고 한다. 
+
+<span style="color : grey;font-size : 14px">(선입선출 방식(FIFO)는 알고리즘을 공부할 때, 자료구조 부분에서 배울 수 있는 내용이기도 한데 선입선출 방식의 자료구조에는 **큐(Queue)**가 있다.)</span>
+
+★*<u>통신분야</u>* 에서 **Pipe**의 의미는
+
+**통신 양단간에 데이터가 흐르는 데이터 통로**라고 볼 수 있다. 
+
+<span style="color : grey;font-size : 14px">(OSI 모델의 시각에선 주로 **표현계층**에 속하지만 <u>터널링 방식</u>에 의한 경우에는 그 이하 계층에서도 가능하다. )</span>
 
 
 
-② **NetBIOS** [네트워크에 대한 기본적인 입출력 (Net + Bios) ]
+② **NetBIOS** [Network Basic Input/Output System_네트워크에 대한 기본적인 입출력]
 
 - 이름 설명 그대로 "네트워크의 기본적인 입출력을 정의한 규약"
 
+- OSI 모델의 세션계층에 관련된 서비스를 제공해 개개의 컴퓨터의 애플리케이션들이
+
+  **근거리 통신망(LAN)**을 통해 통신할 수 있게 한다. (**API**)
+
+- 일반적으로 프로토콜만을 가리키는 경우 NetBIOS 보단 **NetBEUI**라고 부른다.
+
+  - 동일하게 LAN 내 컴퓨터들이 상호 통신할 수 있게 해주는 규격이나
+
+    NetBIOS보다 향상된 확장판이다.
+
+  - 차이점이라 한다면 **프레임형식**을 규정하고 있다.
+
+  - OSI모델에서는 **네트워크 계층**과 **전송 계층**에 위치해 있다.
+
+  - <<특징>>
+
+    - 하나의 완전한 **프로토콜 스택**
+
+    - 노드들간에 Point-to-Point 통신이 이루어진다.
+
+    - 패킷을 다음 네트워크로 넘겨주는 라우팅에 대한 고려를 하지 않아 
+
+      LAN 이외의 <u>WAN 환경에는 적합하지 않다.</u>
 
 
 
+③ **SAP** (Session Announcement Protocol_세션 발표 프로토콜)
 
-③ **SAP**
+https://en.wikipedia.org/wiki/Session_Announcement_Protocol
+
+- IPX 스위트의 **SAP(Service Advertising Protocol)**과 전혀 다른 프로토콜
 
 
 
-
-
-④ **SDP**
+④ **SDP** (Session Description Protocol)
 
 
 
@@ -375,7 +439,7 @@ https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)
 
 ⑦ **RPC** ( Remote Procedure Call )
 
-- *Windows 운영체제 *에서 사용 - **원격 프로시저 호출** 프로토콜
+- "*Windows 운영체제* " 에서 사용 - **원격 프로시저 호출** 프로토콜
 
 
 
