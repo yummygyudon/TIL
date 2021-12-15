@@ -72,7 +72,7 @@
 
 
 
-## OSI 모델 프로토콜
+## OSI 모델 (Open Systems Interconnection Reference Model)
 
 우선 알다시피 
 
