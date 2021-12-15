@@ -101,7 +101,7 @@
 
 
 
-#### L1)  물리 계층 (Physical Layer)
+### L1)  물리 계층 (Physical Layer)
 
 ① **RS-232**
 
@@ -130,7 +130,7 @@
 
 
 
-#### L2)  데이터링크 계층 (DataLink Layer)
+### L2)  데이터링크 계층 (DataLink Layer)
 
 데이터링크 계층 중 하나로 **MAC (Media Access Control_매체 접근제어)**이라는 **자료 전송 프로토콜**이 있다.
 
@@ -190,7 +190,7 @@
 
 
 
-#### L3)  네트워크 계층 (Network Layer)
+### L3)  네트워크 계층 (Network Layer)
 
 OSI 모델 중 가장 복잡한 계층 중 하나로
 
@@ -235,7 +235,7 @@ OSI 모델 중 가장 복잡한 계층 중 하나로
 
 
 
-#### L4)  전송 계층 (Transport Layer)
+### L4)  전송 계층 (Transport Layer)
 
 양 끝단의 사용자들이 <u>신뢰성 있는 데이터</u>를 주고 받을 수 있도록 해준다.
 
@@ -313,7 +313,7 @@ OSI 모델 중 가장 복잡한 계층 중 하나로
 
 
 
-#### L5)  세션 계층 (Session Layer)
+### L5)  세션 계층 (Session Layer)
 
 TCP/IP의 **세션 관리** [ *''확립 '', ''유지 '', ''중단 ''* 등] 부분으로서
 
@@ -411,15 +411,68 @@ FIFO는 **NamedPIPE_명명된 파이프**의 또 다른 이름이라고 한다.
 
 ③ **SAP** (Session Announcement Protocol_세션 발표 프로토콜)
 
-https://en.wikipedia.org/wiki/Session_Announcement_Protocol
+> ★ IPX 스위트의 **SAP(Service Advertising Protocol)**과 전혀 다른 프로토콜
 
-- IPX 스위트의 **SAP(Service Advertising Protocol)**과 전혀 다른 프로토콜
+- **"멀티캐스트 세션 정보" 광고**를 위한 실험적인 프로토콜
+
+- **RTP**(**실시간 전송 프로토콜**_Real-time Transport Protocol) **세션 표현(기술) 형식**으로 
+
+  일반적으로 ***SDP 프로토콜 형식***을 사용한다 
+
+- 알림(발표) 데이터는  <u>**"IP 멀티태스크"**</u>와 <u>**"UDP"**</u>를 사용하여 보내진다.
+
+  - 간격 : (*멀티태스크 전달 범위의 모든 SAP 알림* ) 기본적으로 **초당 4000비트**를 사용하도록 조정
+    - (*그럼에도 불구하고..*) 최대 발표 간격은 <u>**300 초 (5분)**</u>이다.
+    - 알림 간격의 <u>*10배*</u> 혹은 <u>*1시간*</u> 중 더 긴 시간이 경과할 경우 **자동으로 만료**
+  - 물론 발행자가 명시적으로 철회할 수 있음
+
+- SAP 내에서 전송자측에선 
+
+  주기적으로 SDP description을  **멀티캐스트 주소** 및 **9875 포트 번호**로 전송한다.
+
+  - <수신(청취) 어플리케이션> 은 <u>*모든 Advertising 된 멀티캐스트 세션*</u>의 가이드를 구성한다
+
+- **인증 / 암호화 / 압축**
+  - SAP는 <u>*인증*</u> 과 *<u>암호화</u>* 를 위한 독립적인 방법을 제공한다
+    - *암호화는 권장하지 않는다.*
+    - 인증은 선택 사항으로 2가지 인증 체계가 지원된다.
+      - [RFC 2440] **Pretty Good Privacy (PGP)**
+      - [RFC 5652] **Cryptographic Message Syntax (암호화 메세지 구문_CMS)**
 
 
 
 ④ **SDP** (Session Description Protocol)
 
+- **스트리밍 미디어**의 "초기화 인수"를 기술하기 위한 포맷
 
+- **[세션 공지 / 세션 초대 / 멀티미디어 세션 초기화]**를 위한 폼(Form)들을 목적으로
+
+  멀티미디어 세션들의 기술(Session Description)을 위해 작성된 프로토콜
+
+- 양 끝단 간에 <u>*미디어타입*</u> 과 <u>*포맷*</u>에 대해 협상할 수 있는 수단을 제공
+
+  - <span style='font-size:14px'>미디어 폼의 콘텐츠 자체를 위해서 제공되진 않음</span>
+  - 새롭게 추가되는 **미디어 타입 & 포맷 지원** 가능 + 향후 신 기술에 대한 **시스템적인 호환성** 지원
+
+- 위 설명했던 SAP의 한 부분으로 시작되었지만
+
+  *「 RTP(실시간 전송 프로토콜) 」* , *「 RTSP(실시간 스트리밍 프로토콜) 」*, *「 SIP(세션 개시 프로토콜) 」*, *멀티캐스트* 세션을 
+
+
+
+<span style='font-size:14px;color:grey'>※ 세션 (Session) : 멀티미디어 발신자와 수신자 & 데이터 흐름으로 구성됨</span>
+
+<span style='font-size:14px;color:grey'>※ 세션 공지(Session Announcement) : 능동적인 방식으로 사용자들에게 세션 기술(Description) 전달</span>
+
+<span style='font-size:14px;color:grey'>※ 세션 광고 : 세션 공지와 동일</span>
+
+<span style='font-size:14px;color:grey'>※ 세션 기술 (Session Description) : 멀티미디어 세션을 발견하고 참여하는 데에 필요한 정보를 제공하기 위해 정의된 포맷</span>
+
+
+
+★ Session으로 시작하는 프로토콜이 이외에도 스트리밍 관련 프로토콜 등도 굉장히 많은데 
+
+이는 *<u>인터넷 프로토콜 스위트</u>* 설명할 때, 함께 설명하겠다.
 
 
 
@@ -447,7 +500,7 @@ https://en.wikipedia.org/wiki/Session_Announcement_Protocol
 
 
 
-#### L6)  표현 계층 (Presentation Layer)
+### L6)  표현 계층 (Presentation Layer)
 
 응용 계층으로부터 전달받거나 전달해야하는 데이터를 읽을 수 있도록 
 
@@ -455,27 +508,73 @@ https://en.wikipedia.org/wiki/Session_Announcement_Protocol
 
 데이터가 안전하게 사용되게끔 **암호화** 및 **복호화** 작업도 수행한다. 
 
+<span style='font-size:14px'>여기서부턴 아마 다들 많이 접해본 확장자들의 이름일 것이다.</span>
+
 
 
 ex. *EBCDIC* 인코딩 문서 -> *ASCII* 인코딩 문서로 변환
 
+
+
 ① **ASCII** (American Standard Code for Information Interchange_정보교환용 미국 표준코드)
+
+> 또 다른 이름은 <u>*ISO-IR-006*</u> 이다.
 
 - 문자를 사용하는 많은 장치에서 사용되며, 대부분의 문자 인코딩이 ASCII을 기반으로 두고 있다.
 - **7비트(Bit)** 인코딩 방식
-  - 33개의 출력 불가능 제어 문자 & 공백 포함 95개의 출력 가능 문자 = 128개의 문자 조합
+  - 33개의 출력 불가능 제어 문자 & 공백 포함 95개의 출력 가능 문자 = **128개**의 문자 조합
+  - <u>*확장 ASCII 코드 : **8비트** 사용*</u>
+- **Zone** = **3 비트(Bit)** / **Digit** = **4 비트(Bit)**
+- <u>일반 PC용 컴퓨터</u> 및 <u>데이터 통신</u>용
+
+
 
 ② **JPEG**
 
-③ **MPEG**
+- 그래픽 파일 규격
 
-④ **EBCDIC** ( **확장 이진화 십진법 교환 부호** _ Extended Binary Coded Decimal Interchange Code )
+- [ **ISO 표준 규격** ] 정지 화상을 위해 만들어진 **손실 압축 방법** 
+
+  *(But, PNG를 주로 사용하지만 <u>비손실 압축</u>도 지원하긴 함)*
+
+- JPEG 표준은 "이미지가 어떻게 연속된 바이트(Byte)로 바뀌는지" 만을 규정 
+
+
+
+③ **MPEG** (Moving/Motion Picture Experts Group)
+
+> 본래 **ISO 산하 국제표준화단체**의 이름이지만 표준 규격이름으로 주로 쓰임
+
+- 동영상 파일 규격 
+
+- 다양한 압축 포맷과 부가 표준이 창안되었음
+
+  - MPEG-1 , MPEG-2 / MPEG-4 / MPEG-7 / MPEG-21 / MPEG - A~E / H.264 등
+
+  - **MPEG-21** : MPEG 기술을 통합한 규격 _ 디지털 콘텐츠 관련 모든 과정 관리
+
+  - **H.264** : <span style='font-size:14px'>(ITU 기관과 공동 표준화)</span> 매우 높은 압축률 지원되는 **디지털 비디오 코덱 표준 기술**
+
+    ​				<span style='font-size:14px'>* 현재 국내 지상파 DMP 및 위성 DMB의 비디오 기술 표준</span>
+
+
+
+④ **EBCDIC** ( **확장 이진화 십진법 교환 부호** _ **E**xtended **B**inary **C**oded **D**ecimal **I**nterchange **C**ode )
+
+>ASCII 코드와는 다른 코드
+
+- 확장된 **BCD (Binary Coded Decimal_이진화 십진법) 코드**
+
+- **8비트(Bit)** 인코딩 방식
+  - **256개**의 표현 가능
+- **Zone** = **4 비트(Bit)** / **Digit** = **4 비트(Bit)**
+- <u>대형 컴퓨터</u> 용으로 주로 쓰이는 범용 코드
 
 
 
 
 
-#### L7)  응용 계층 (Application Layer)
+### L7)  응용 계층 (Application Layer)
 
 응용 프로세스와 직접 관계해서 일반적인 응용 서비스를 수행하는 계층이다.
 
